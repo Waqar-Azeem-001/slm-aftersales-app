@@ -23,7 +23,11 @@ const TILES: [PhotoKind, string][] = [
 
 type FieldKey = 'tyreNumber' | 'serialNumber' | 'brand' | 'size' | 'pattern' | 'dot' | 'truckNumber';
 
-const today = () => new Date().toISOString().slice(0, 10);
+/** local date (Pakistan / Saudi), not UTC */
+const today = () => {
+  const d = new Date();
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+};
 const LAST_CITY = 'slm-last-city';
 
 export function blankClaim(): Claim {
