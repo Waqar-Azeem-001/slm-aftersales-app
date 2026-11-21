@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "SLM: install + start app",
+      "type": "shell",
+      "command": "npm install && npm run dev",
+      "options": { "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] } },
+      "runOptions": { "runOn": "folderOpen" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "SLM: start app",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] } },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ]
+}
