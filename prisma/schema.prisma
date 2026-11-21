@@ -1,0 +1,135 @@
+// Database schema for when the app is connected to the MySQL database on the
+// existing hosting account. Phase 1 runs on the local browser store
+// (lib/store.tsx) seeded from data/seed/*.json; the fields below match it.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Decision {
+  Claimable
+  Nonclaimable
+  Comercial
+  Pending
+}
+
+enum ClaimStatus {
+  draft
+  confirmed
+}
+
+model Dealer {
+  id            String   @id @default(cuid())
+  name          String
+  city          String
+  role          String // Distributor | Tire Shop | Sub-dealer
+  contactPerson String?
+  phone         String?
+  brands        String? // comma separated: SLM,STARLUX,ROADLUX
+  note          String?
+  claims        Claim[]  @relation("ClaimDistributor")
+  checkedClaims Claim[]  @relation("ClaimDealerChecked")
+  createdAt     DateTime @default(now())
+}
+
+model Customer {
+  id            String    @id @default(cuid())
+  name          String
+  type          String // Transporter | Corporate
+  business      String?
+  city          String?
+  contactPerson String?
+  phone         String?
+  fleetSize     Int?
+  vehicleTypes  String?
+  sizes         String?
+  vehicles      Vehicle[]
+  drivers       Driver[]
+  claims        Claim[]
+  createdAt     DateTime  @default(now())
+}
+
+model Vehicle {
+  id         String   @id @default(cuid())
+  plate      String
+  type       String?
+  tyreSize   String?
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+  claims     Claim[]
+}
+
+model Driver {
+  id         String   @id @default(cuid())
+  name       String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+  claims     Claim[]
+}
+
+model Claim {
+  id                  String      @id @default(cuid())
+  sNo                 Int?
+  status              ClaimStatus @default(draft)
+  bilty               String?
+  dot                 String?
+  fitmentDate         DateTime?
+  happenedDate        DateTime?
+  location            String?
+  truckType           String?
+  driverName          String?
+  truckNumber         String?
+  brand               String
+  tyreSize            String // "11.00R20 A707"
+  size                String?
+  pattern             String?
+  tyreNumber          String
+  serialNumber        String?
+  loadTons            Float?
+  operatingDistanceKm Float?
+  kmCovered           Float?
+  speedKmh            Float?
+  roadCondition       String?
+  residualDepthMm     Float?
+  damage              String?
+  faultCategory       String?
+  vehiclePosition     String?
+  decision            Decision    @default(Pending)
+  inspectedBy         String      @default("Waseem Akhtar")
+  whatsappInspection  String?
+  remarks             String?
+  amountApproved      Float?
+  approvedBy          String?
+  approvedDate        DateTime?
+
+  distributor       Dealer?   @relation("ClaimDistributor", fields: [distributorId], references: [id])
+  distributorId     String?
+  dealerChecked     Dealer?   @relation("ClaimDealerChecked", fields: [dealerCheckedId], references: [id])
+  dealerCheckedId   String?
+  customer          Customer? @relation(fields: [customerId], references: [id])
+  customerId        String?
+  vehicle           Vehicle?  @relation(fields: [vehicleId], references: [id])
+  vehicleId         String?
+  driver            Driver?   @relation(fields: [driverId], references: [id])
+  driverId          String?
+  photos            Photo[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([tyreNumber])
+  @@index([happenedDate])
+}
+
+model Photo {
+  id      String @id @default(cuid())
+  claim   Claim  @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  claimId String
+  kind    String // full | tyre | serial | brand | dot | defect | extra
+  url     String // file path / storage URL on the hosting
+  order   Int    @default(0)
+}

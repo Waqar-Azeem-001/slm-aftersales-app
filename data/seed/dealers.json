@@ -1,0 +1,748 @@
+[
+ {
+  "name": "Yaseen Tire",
+  "city": "Bhulwal",
+  "role": "Tire Shop",
+  "contactPerson": "Tahir Amin",
+  "phone": "03008182201",
+  "brands": [],
+  "id": "d001",
+  "note": ""
+ },
+ {
+  "name": "Akhtar tire",
+  "city": "Daska",
+  "role": "Tire Shop",
+  "contactPerson": "Akhtar Butt",
+  "phone": "03007124780 03030621327",
+  "brands": [],
+  "id": "d002",
+  "note": ""
+ },
+ {
+  "name": "Aslam & Sons Jahanzaib Traders",
+  "city": "Faisalabad",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d003",
+  "note": ""
+ },
+ {
+  "name": "Aslam Sons",
+  "city": "Faisalabad",
+  "role": "Tyre Shop",
+  "contactPerson": "Zubair",
+  "phone": "03007693135",
+  "brands": [],
+  "id": "d004",
+  "note": ""
+ },
+ {
+  "name": "Hafiz Tyre",
+  "city": "Faisalabad",
+  "role": "Tire Shop",
+  "contactPerson": "",
+  "phone": "03146675674",
+  "brands": [],
+  "id": "d005",
+  "note": ""
+ },
+ {
+  "name": "Shahzaib Traders",
+  "city": "Faisalabad",
+  "role": "Distributor",
+  "contactPerson": "Nadeem Butt",
+  "phone": "03007661150",
+  "brands": [],
+  "id": "d006",
+  "note": ""
+ },
+ {
+  "name": "Shoukat Traders",
+  "city": "Faisalabad",
+  "role": "Distributor",
+  "contactPerson": "Mr Shoukat",
+  "phone": "03008665367",
+  "brands": [],
+  "id": "d007",
+  "note": ""
+ },
+ {
+  "name": "Tariq Auto",
+  "city": "Faisalabad",
+  "role": "Shop/Transporter",
+  "contactPerson": "Tariq",
+  "phone": "03074802847",
+  "brands": [],
+  "id": "d008",
+  "note": ""
+ },
+ {
+  "name": "Fawad Tyre",
+  "city": "Gujranwala",
+  "role": "Tire Shop",
+  "contactPerson": "",
+  "phone": "03004021727",
+  "brands": [],
+  "id": "d009",
+  "note": ""
+ },
+ {
+  "name": "Sami Goods",
+  "city": "Gujranwala",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d010",
+  "note": ""
+ },
+ {
+  "name": "Choudhry tyre",
+  "city": "Gujrat",
+  "role": "Tire Shop",
+  "contactPerson": "Humza",
+  "phone": "03034560710",
+  "brands": [],
+  "id": "d011",
+  "note": ""
+ },
+ {
+  "name": "Haji Sharif tires",
+  "city": "Jaranwala",
+  "role": "Tyre Shop",
+  "contactPerson": "Haji Akber",
+  "phone": "03006530841",
+  "brands": [],
+  "id": "d012",
+  "note": ""
+ },
+ {
+  "name": "Pakistan tire",
+  "city": "Jhang",
+  "role": "Distributor",
+  "contactPerson": "Sheikh Asif",
+  "phone": "03006501395",
+  "brands": [],
+  "id": "d013",
+  "note": ""
+ },
+ {
+  "name": "Punjab Autoes",
+  "city": "Jhang",
+  "role": "Tire Shop",
+  "contactPerson": "Hassan",
+  "phone": "03006506237",
+  "brands": [],
+  "id": "d014",
+  "note": ""
+ },
+ {
+  "name": "Usman Mazher Tyre House",
+  "city": "Jhang",
+  "role": "Tire Shop",
+  "contactPerson": "",
+  "phone": "03006519295",
+  "brands": [],
+  "id": "d015",
+  "note": ""
+ },
+ {
+  "name": "City Tire Rubber Company",
+  "city": "Kamalia",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d016",
+  "note": ""
+ },
+ {
+  "name": "Ahmad tire",
+  "city": "Kasur",
+  "role": "Tire Shop",
+  "contactPerson": "Noor Ahmad",
+  "phone": "03084046722 03044623328",
+  "brands": [],
+  "id": "d017",
+  "note": ""
+ },
+ {
+  "name": "Kashif Tyre",
+  "city": "Kasur",
+  "role": "Tire Shop",
+  "contactPerson": "",
+  "phone": "03074911778",
+  "brands": [],
+  "id": "d018",
+  "note": ""
+ },
+ {
+  "name": "Sabir Tire",
+  "city": "Kasur",
+  "role": "Tire Shop",
+  "contactPerson": "Qadir",
+  "phone": "03004071606",
+  "brands": [],
+  "id": "d019",
+  "note": ""
+ },
+ {
+  "name": "Ab. Samad",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Samad",
+  "phone": "03005951055",
+  "brands": [],
+  "id": "d020",
+  "note": ""
+ },
+ {
+  "name": "Ahmad Traders",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Faizan",
+  "phone": "03129495555 03219495555",
+  "brands": [],
+  "id": "d021",
+  "note": ""
+ },
+ {
+  "name": "Arslan tire",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "M. Arslan",
+  "phone": "03236366405",
+  "brands": [],
+  "id": "d022",
+  "note": ""
+ },
+ {
+  "name": "Asif Brothers",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [
+   "STARLUX"
+  ],
+  "note": "Also SLM sub-dealer of Z & H",
+  "id": "d023"
+ },
+ {
+  "name": "Asif tires",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Sheikh Asif",
+  "phone": "03316471161",
+  "brands": [],
+  "id": "d024",
+  "note": ""
+ },
+ {
+  "name": "Atif Brothers",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "Saqib",
+  "phone": "03464610103",
+  "brands": [],
+  "id": "d025",
+  "note": ""
+ },
+ {
+  "name": "Bisllah tire trader",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Zain",
+  "phone": "03218808300",
+  "brands": [],
+  "id": "d026",
+  "note": ""
+ },
+ {
+  "name": "Daewoo Bus Service",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d027",
+  "note": ""
+ },
+ {
+  "name": "Durrani Tyre",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "M. Rafiq",
+  "phone": "03009585429",
+  "brands": [],
+  "id": "d028",
+  "note": ""
+ },
+ {
+  "name": "HB Group Enterprises",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d029",
+  "note": ""
+ },
+ {
+  "name": "Imran tyrte",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Imran",
+  "phone": "03234231419",
+  "brands": [],
+  "id": "d030",
+  "note": ""
+ },
+ {
+  "name": "Khawaja tires",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Humza",
+  "phone": "03014091226",
+  "brands": [],
+  "id": "d031",
+  "note": ""
+ },
+ {
+  "name": "MYCO Corporation",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [
+   "ROADLUX"
+  ],
+  "note": "All ROADLUX tyres in Pakistan",
+  "id": "d032"
+ },
+ {
+  "name": "Madina tire",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "M. Islam",
+  "phone": "03131563055",
+  "brands": [],
+  "id": "d033",
+  "note": ""
+ },
+ {
+  "name": "Mehboob Tyre Shop",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Mr. Mehboob Khan",
+  "phone": "03030042350",
+  "brands": [],
+  "id": "d034",
+  "note": ""
+ },
+ {
+  "name": "Mursleen Tyre",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Ayaz Khan",
+  "phone": "03224953303",
+  "brands": [],
+  "id": "d035",
+  "note": ""
+ },
+ {
+  "name": "Raheem tire",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Sikander",
+  "phone": "0321-4467988",
+  "brands": [],
+  "id": "d036",
+  "note": ""
+ },
+ {
+  "name": "Sabzazar",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Frooq",
+  "phone": "03015910717",
+  "brands": [],
+  "id": "d037",
+  "note": ""
+ },
+ {
+  "name": "Taj ali tire",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Sher Ali",
+  "phone": "03009356661",
+  "brands": [],
+  "id": "d038",
+  "note": ""
+ },
+ {
+  "name": "Wahab tire",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Wahab",
+  "phone": "03454089787 03030942628",
+  "brands": [],
+  "id": "d039",
+  "note": ""
+ },
+ {
+  "name": "Waqas tires",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Waqas",
+  "phone": "03454552578",
+  "brands": [],
+  "id": "d040",
+  "note": ""
+ },
+ {
+  "name": "Yousaf Tire",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d041",
+  "note": ""
+ },
+ {
+  "name": "Yousaf Tires",
+  "city": "Lahore",
+  "role": "Tire Shop",
+  "contactPerson": "Yousaf",
+  "phone": "03008403132",
+  "brands": [],
+  "id": "d042",
+  "note": ""
+ },
+ {
+  "name": "Z & H Enterprises",
+  "city": "Lahore",
+  "role": "Distributor",
+  "contactPerson": "Goher",
+  "phone": "03224579940",
+  "brands": [
+   "SLM"
+  ],
+  "id": "d043",
+  "note": ""
+ },
+ {
+  "name": "Ahsan Tire",
+  "city": "Mandi Bahaudin",
+  "role": "Tire Shop",
+  "contactPerson": "Ahsan",
+  "phone": "03458592482 03458592480",
+  "brands": [],
+  "id": "d044",
+  "note": ""
+ },
+ {
+  "name": "Naeem & Co.",
+  "city": "Mandi Bahaudin",
+  "role": "Tire Shop",
+  "contactPerson": "Nadeem",
+  "phone": "03027744449",
+  "brands": [],
+  "id": "d045",
+  "note": ""
+ },
+ {
+  "name": "Al Fareed Tire",
+  "city": "Okara",
+  "role": "Tire Shop",
+  "contactPerson": "Mr. Dildar",
+  "phone": "03007534157",
+  "brands": [],
+  "id": "d046",
+  "note": ""
+ },
+ {
+  "name": "Karachi Tyre",
+  "city": "Okara",
+  "role": "Tyre Shop",
+  "contactPerson": "Mujahid",
+  "phone": "03086932038",
+  "brands": [],
+  "id": "d047",
+  "note": ""
+ },
+ {
+  "name": "New Rehmani Tire",
+  "city": "Okara",
+  "role": "Tire Shop",
+  "contactPerson": "Mr. Haseeb",
+  "phone": "03008695155",
+  "brands": [],
+  "id": "d048",
+  "note": ""
+ },
+ {
+  "name": "Ramzan Auto",
+  "city": "Okara",
+  "role": "Tire Shop",
+  "contactPerson": "Haji Iqbal",
+  "phone": "03006950908",
+  "brands": [],
+  "id": "d049",
+  "note": ""
+ },
+ {
+  "name": "Rana Autoes",
+  "city": "Riwend",
+  "role": "Tire Shop",
+  "contactPerson": "Rana Sohail",
+  "phone": "03004656856",
+  "brands": [],
+  "id": "d050",
+  "note": ""
+ },
+ {
+  "name": "Awami Tyre",
+  "city": "Sahiwal",
+  "role": "Tyre Shop",
+  "contactPerson": "Waseem",
+  "phone": "03452100222",
+  "brands": [],
+  "id": "d051",
+  "note": ""
+ },
+ {
+  "name": "Awan Tire",
+  "city": "Sahiwal",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d052",
+  "note": ""
+ },
+ {
+  "name": "Awan Tyre",
+  "city": "Sahiwal",
+  "role": "Tyre Shop",
+  "contactPerson": "Aslam",
+  "phone": "03008691338",
+  "brands": [],
+  "id": "d053",
+  "note": ""
+ },
+ {
+  "name": "Basharat",
+  "city": "Sahiwal",
+  "role": "Tyre Shop",
+  "contactPerson": "Basharat",
+  "phone": "03008692333",
+  "brands": [],
+  "id": "d054",
+  "note": ""
+ },
+ {
+  "name": "Karachi Tire",
+  "city": "Sahiwal",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d055",
+  "note": ""
+ },
+ {
+  "name": "Pindi Tyre",
+  "city": "Sahiwal",
+  "role": "Tyre Shop",
+  "contactPerson": "Naeem",
+  "phone": "03006930820",
+  "brands": [],
+  "id": "d056",
+  "note": ""
+ },
+ {
+  "name": "Tire Shop",
+  "city": "Sahiwal",
+  "role": "Tire Shop",
+  "contactPerson": "Nadeem",
+  "phone": "03014704497",
+  "brands": [],
+  "id": "d057",
+  "note": ""
+ },
+ {
+  "name": "Al Rehman Tyre",
+  "city": "Samundri",
+  "role": "Tire Shop",
+  "contactPerson": "Shahid",
+  "phone": "03006566957",
+  "brands": [],
+  "id": "d058",
+  "note": ""
+ },
+ {
+  "name": "A K tire",
+  "city": "Sargodha",
+  "role": "Tire Shop",
+  "contactPerson": "Kashif",
+  "phone": "03212330034 03008602234",
+  "brands": [],
+  "id": "d059",
+  "note": ""
+ },
+ {
+  "name": "CH. Tire Marchent",
+  "city": "Sargodha",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d060",
+  "note": ""
+ },
+ {
+  "name": "Ch Tyre Merchant",
+  "city": "Sargodha",
+  "role": "Tyre Shop",
+  "contactPerson": "Ch Arshad",
+  "phone": "03006037781",
+  "brands": [],
+  "id": "d061",
+  "note": ""
+ },
+ {
+  "name": "Choudhry Tire",
+  "city": "Sargodha",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d062",
+  "note": ""
+ },
+ {
+  "name": "Gulzar tyre",
+  "city": "Sargodha",
+  "role": "Tyre Shop",
+  "contactPerson": "Gulzar",
+  "phone": "03046312029",
+  "brands": [],
+  "id": "d063",
+  "note": ""
+ },
+ {
+  "name": "New Choudhry Tire",
+  "city": "Sargodha",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d064",
+  "note": ""
+ },
+ {
+  "name": "New Choudhry Tyre",
+  "city": "Sargodha",
+  "role": "Tyre Shop",
+  "contactPerson": "Imran",
+  "phone": "03009600174",
+  "brands": [],
+  "id": "d065",
+  "note": ""
+ },
+ {
+  "name": "Shafqat & Co.",
+  "city": "Sargodha",
+  "role": "Tyre Shop",
+  "contactPerson": "Shehzad",
+  "phone": "03216003032",
+  "brands": [],
+  "id": "d066",
+  "note": ""
+ },
+ {
+  "name": "Sufi Autoes",
+  "city": "Sargodha",
+  "role": "Tyre Shop",
+  "contactPerson": "Kashif",
+  "phone": "03226763127",
+  "brands": [],
+  "id": "d067",
+  "note": ""
+ },
+ {
+  "name": "Sultan Tyre",
+  "city": "Sheikhupura",
+  "role": "Tire Shop",
+  "contactPerson": "",
+  "phone": "03014417107",
+  "brands": [],
+  "id": "d068",
+  "note": ""
+ },
+ {
+  "name": "Tire Point",
+  "city": "Sheikhupura",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d069",
+  "note": ""
+ },
+ {
+  "name": "Tyre point",
+  "city": "Sheikhupura",
+  "role": "Tire Shop",
+  "contactPerson": "Ramzan",
+  "phone": "03034118540",
+  "brands": [],
+  "id": "d070",
+  "note": ""
+ },
+ {
+  "name": "Heera tyre",
+  "city": "Sialkot",
+  "role": "Tire Shop",
+  "contactPerson": "Shabir",
+  "phone": "03016186002",
+  "brands": [],
+  "id": "d071",
+  "note": ""
+ },
+ {
+  "name": "Maqbool tyre",
+  "city": "Sialkot",
+  "role": "Tire Shop",
+  "contactPerson": "Masood Ahmad",
+  "phone": "03006102878",
+  "brands": [],
+  "id": "d072",
+  "note": ""
+ },
+ {
+  "name": "zaheer tyre",
+  "city": "Sialkot",
+  "role": "Tire Shop",
+  "contactPerson": "Zaheer",
+  "phone": "03009619286",
+  "brands": [],
+  "id": "d073",
+  "note": ""
+ },
+ {
+  "name": "Rehman Tire",
+  "city": "Sumandri",
+  "role": "Distributor",
+  "contactPerson": "",
+  "phone": "",
+  "brands": [],
+  "id": "d074",
+  "note": ""
+ }
+]
