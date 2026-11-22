@@ -28,7 +28,9 @@ async function call(action: string, id: string, init: RequestInit = {}) {
 
 export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const res = await call('put', id, { method: 'POST', body: await req.arrayBuffer(), headers: { 'Content-Type': 'application/octet-stream' } });
+  const form = new FormData();
+  form.append('photo', new Blob([await req.arrayBuffer()], { type: 'image/jpeg' }), `${id}.jpg`);
+  const res = await call('put', id, { method: 'POST', body: form });
   return NextResponse.json({ ok: res.ok }, { status: res.ok ? 200 : res.status });
 }
 

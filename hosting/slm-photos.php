@@ -28,7 +28,9 @@ $action = $_GET['action'] ?? '';
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($action === 'put' && $method === 'POST') {
-    $body = file_get_contents('php://input');
+    // multipart upload (field "photo"): raw binary POSTs are blocked by the host's firewall
+    $tmp = $_FILES['photo']['tmp_name'] ?? '';
+    $body = $tmp !== '' && is_uploaded_file($tmp) ? file_get_contents($tmp) : '';
     if ($body === '' || strlen($body) > MAX_BYTES || @getimagesizefromstring($body) === false) {
         http_response_code(400);
         exit('not an image');
