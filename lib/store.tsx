@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { syncPhotos } from './photos';
 import type { Claim, Customer, Dealer } from './types';
 
 /**
@@ -57,7 +58,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    void reload();
+    void reload().then(() => syncPhotos());
   }, [reload]);
 
   const persist = useCallback((p: Promise<void>) => {

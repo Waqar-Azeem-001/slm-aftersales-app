@@ -18,7 +18,26 @@ function open(): Promise<IDBDatabase> {
   });
 }
 
-export async function putPhoto(id: string, blob: Blob): Promise<void> {
+// Server copy lives on the cPanel hosting via /api/photos/[id]. IndexedDB is a local cache
+// and a queue: photos that could not be uploaded (no signal) are retried by syncPhotos().
+const PENDING = 'slm-photos-pending';
+
+function pendingIds(): string[] {
+  try {
+    return JSON.parse(localStorage.getItem(PENDING) ?? '[]') as string[];
+  } catch {
+    return [];
+  }
+}
+function setPending(ids: string[]) {
+  try {
+    localStorage.setItem(PENDING, JSON.stringify([...new Set(ids)]));
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+async function idbPut(id: string, blob: Blob): Promise<void> {
   const db = await open();
   await new Promise<void>((resolve, reject) => {
     const tx = db.transaction(STORE, 'readwrite');
@@ -28,13 +47,42 @@ export async function putPhoto(id: string, blob: Blob): Promise<void> {
   });
 }
 
-export async function getPhoto(id: string): Promise<Blob | null> {
+async function idbGet(id: string): Promise<Blob | null> {
   const db = await open();
   return new Promise((resolve, reject) => {
     const req = db.transaction(STORE, 'readonly').objectStore(STORE).get(id);
     req.onsuccess = () => resolve((req.result as Blob) ?? null);
     req.onerror = () => reject(req.error);
   });
+}
+
+async function upload(id: string, blob: Blob): Promise<boolean> {
+  try {
+    const res = await fetch(`/api/photos/${encodeURIComponent(id)}`, { method: 'PUT', body: blob });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+export async function putPhoto(id: string, blob: Blob): Promise<void> {
+  await idbPut(id, blob);
+  setPending([...pendingIds(), id]);
+  if (await upload(id, blob)) setPending(pendingIds().filter((p) => p !== id));
+}
+
+export async function getPhoto(id: string): Promise<Blob | null> {
+  const local = await idbGet(id);
+  if (local) return local;
+  try {
+    const res = await fetch(`/api/photos/${encodeURIComponent(id)}`);
+    if (!res.ok) return null;
+    const blob = await res.blob();
+    await idbPut(id, blob);
+    return blob;
+  } catch {
+    return null;
+  }
 }
 
 export async function deletePhoto(id: string): Promise<void> {
@@ -45,6 +93,25 @@ export async function deletePhoto(id: string): Promise<void> {
     tx.oncomplete = () => resolve();
     tx.onerror = () => resolve();
   });
+  setPending(pendingIds().filter((p) => p !== id));
+  try {
+    await fetch(`/api/photos/${encodeURIComponent(id)}`, { method: 'DELETE' });
+  } catch {
+    /* offline: the orphan file on the server is harmless */
+  }
+}
+
+/** Upload photos that are still only on this device (e.g. taken without signal). Returns how many remain. */
+export async function syncPhotos(): Promise<number> {
+  for (const id of pendingIds()) {
+    const blob = await idbGet(id).catch(() => null);
+    if (!blob) {
+      setPending(pendingIds().filter((p) => p !== id));
+      continue;
+    }
+    if (await upload(id, blob)) setPending(pendingIds().filter((p) => p !== id));
+  }
+  return pendingIds().length;
 }
 
 /** Resize to max 1600 px on the long side, turn portrait shots to landscape, JPEG ~0.82. */
