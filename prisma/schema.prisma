@@ -107,6 +107,10 @@ model Claim {
   approvedBy          String?
   approvedDate        DateTime?
 
+  distributorName   String?
+  dealerCheckedName String?
+  customerName      String?
+
   distributor       Dealer?   @relation("ClaimDistributor", fields: [distributorId], references: [id])
   distributorId     String?
   dealerChecked     Dealer?   @relation("ClaimDealerChecked", fields: [dealerCheckedId], references: [id])

@@ -24,7 +24,7 @@ function Icon({ d, size = 20 }: { d: string; size?: number }) {
 
 export default function AppShell({ children }: { children: ReactNode }) {
   const path = usePathname();
-  const { claims } = useStore();
+  const { claims, error, reload } = useStore();
   const drafts = claims.filter((c) => c.status === 'draft').length;
   const active = (href: string) => (href === '/' ? path === '/' : href === '/claims' ? path === '/claims' || (path.startsWith('/claims/') && path !== '/claims/new') : path.startsWith(href));
 
@@ -52,6 +52,15 @@ export default function AppShell({ children }: { children: ReactNode }) {
           <div className="ml-auto flex h-9 w-9 items-center justify-center rounded-full bg-brand-dark text-sm font-bold">WA</div>
         </div>
       </header>
+
+      {error && (
+        <div role="alert" className="bg-red-600 px-4 py-2 text-center text-sm font-semibold text-white">
+          {error}{' '}
+          <button type="button" className="underline" onClick={() => { void reload(); }}>
+            Dobara koshish
+          </button>
+        </div>
+      )}
 
       <main className="mx-auto max-w-7xl px-4 pb-28 pt-6 md:pb-12">{children}</main>
 

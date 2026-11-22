@@ -1,18 +1,13 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import seedClaims from '@/data/seed/claims.json';
-import seedDealers from '@/data/seed/dealers.json';
-import seedCustomers from '@/data/seed/customers.json';
 import type { Claim, Customer, Dealer } from './types';
 
 /**
- * Phase 1 data store: lives in the browser (localStorage), seeded from data/seed.
- * When the MySQL database is connected (Phase 2) these functions become API calls;
- * the screens keep using the same hook.
+ * Data store backed by the MySQL database through the /api routes.
+ * Changes are applied on screen immediately and saved to the server in the background;
+ * if a save fails, `error` is set so the UI can warn and the screen can be reloaded.
  */
-const KEY = 'slm-aftersales-store-v1';
-
 interface Data {
   claims: Claim[];
   dealers: Dealer[];
@@ -21,78 +16,102 @@ interface Data {
 
 interface Store extends Data {
   ready: boolean;
+  error: string | null;
   saveClaim: (c: Claim) => void;
   deleteClaim: (id: string) => void;
   nextSNo: () => number;
   saveCustomer: (c: Customer) => void;
   saveDealer: (d: Dealer) => void;
-  resetToSeed: () => void;
+  /** Re-read everything from the database (drops unsaved local state). */
+  reload: () => Promise<void>;
   exportBackup: () => string;
 }
 
-const seed = (): Data => ({
-  claims: seedClaims as unknown as Claim[],
-  dealers: (seedDealers as unknown as Dealer[]).map((d) => ({ ...d, brands: d.brands ?? [], note: d.note ?? '' })),
-  customers: (seedCustomers as unknown as Customer[]).map((c) => ({ ...c, drivers: c.drivers ?? [], vehicles: c.vehicles ?? [] })),
-});
-
 const Ctx = createContext<Store | null>(null);
 
+async function api(path: string, method: 'PUT' | 'DELETE', body?: unknown) {
+  const res = await fetch(path, {
+    method,
+    headers: body ? { 'Content-Type': 'application/json' } : undefined,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!res.ok) throw new Error(`${method} ${path} failed (${res.status})`);
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<Data>(seed);
+  const [data, setData] = useState<Data>({ claims: [], dealers: [], customers: [] });
   const [ready, setReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const reload = useCallback(async () => {
     try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) setData(JSON.parse(raw) as Data);
-    } catch {
-      /* corrupted or unavailable storage: keep seed */
+      const res = await fetch('/api/data', { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+      setData((await res.json()) as Data);
+      setError(null);
+    } catch (e) {
+      setError(`Database se data nahi aaya: ${(e as Error).message}`);
+    } finally {
+      setReady(true);
     }
-    setReady(true);
   }, []);
 
   useEffect(() => {
-    if (!ready) return;
-    try {
-      localStorage.setItem(KEY, JSON.stringify(data));
-    } catch {
-      /* storage full: data stays in memory for this session */
-    }
-  }, [data, ready]);
+    void reload();
+  }, [reload]);
 
-  const saveClaim = useCallback((c: Claim) => {
-    setData((d) => {
-      const i = d.claims.findIndex((x) => x.id === c.id);
-      const claims = i >= 0 ? d.claims.map((x) => (x.id === c.id ? c : x)) : [...d.claims, c];
-      return { ...d, claims };
-    });
+  const persist = useCallback((p: Promise<void>) => {
+    p.then(() => setError(null)).catch((e: Error) => setError(`Save nahi hua: ${e.message}. Page reload karein.`));
   }, []);
 
-  const deleteClaim = useCallback((id: string) => setData((d) => ({ ...d, claims: d.claims.filter((c) => c.id !== id) })), []);
+  const saveClaim = useCallback(
+    (c: Claim) => {
+      setData((d) => {
+        const i = d.claims.findIndex((x) => x.id === c.id);
+        return { ...d, claims: i >= 0 ? d.claims.map((x) => (x.id === c.id ? c : x)) : [...d.claims, c] };
+      });
+      persist(api(`/api/claims/${encodeURIComponent(c.id)}`, 'PUT', c));
+    },
+    [persist],
+  );
+
+  const deleteClaim = useCallback(
+    (id: string) => {
+      setData((d) => ({ ...d, claims: d.claims.filter((c) => c.id !== id) }));
+      persist(api(`/api/claims/${encodeURIComponent(id)}`, 'DELETE'));
+    },
+    [persist],
+  );
 
   const nextSNo = useCallback(() => data.claims.reduce((m, c) => Math.max(m, c.sNo ?? 0), 0) + 1, [data.claims]);
 
-  const saveCustomer = useCallback((c: Customer) => {
-    setData((d) => {
-      const i = d.customers.findIndex((x) => x.id === c.id);
-      return { ...d, customers: i >= 0 ? d.customers.map((x) => (x.id === c.id ? c : x)) : [...d.customers, c] };
-    });
-  }, []);
+  const saveCustomer = useCallback(
+    (c: Customer) => {
+      setData((d) => {
+        const i = d.customers.findIndex((x) => x.id === c.id);
+        return { ...d, customers: i >= 0 ? d.customers.map((x) => (x.id === c.id ? c : x)) : [...d.customers, c] };
+      });
+      persist(api(`/api/customers/${encodeURIComponent(c.id)}`, 'PUT', c));
+    },
+    [persist],
+  );
 
-  const saveDealer = useCallback((x: Dealer) => {
-    setData((d) => {
-      const i = d.dealers.findIndex((y) => y.id === x.id);
-      return { ...d, dealers: i >= 0 ? d.dealers.map((y) => (y.id === x.id ? x : y)) : [...d.dealers, x] };
-    });
-  }, []);
+  const saveDealer = useCallback(
+    (x: Dealer) => {
+      setData((d) => {
+        const i = d.dealers.findIndex((y) => y.id === x.id);
+        return { ...d, dealers: i >= 0 ? d.dealers.map((y) => (y.id === x.id ? x : y)) : [...d.dealers, x] };
+      });
+      persist(api(`/api/dealers/${encodeURIComponent(x.id)}`, 'PUT', x));
+    },
+    [persist],
+  );
 
-  const resetToSeed = useCallback(() => setData(seed()), []);
   const exportBackup = useCallback(() => JSON.stringify(data, null, 1), [data]);
 
   const value = useMemo<Store>(
-    () => ({ ...data, ready, saveClaim, deleteClaim, nextSNo, saveCustomer, saveDealer, resetToSeed, exportBackup }),
-    [data, ready, saveClaim, deleteClaim, nextSNo, saveCustomer, saveDealer, resetToSeed, exportBackup],
+    () => ({ ...data, ready, error, saveClaim, deleteClaim, nextSNo, saveCustomer, saveDealer, reload, exportBackup }),
+    [data, ready, error, saveClaim, deleteClaim, nextSNo, saveCustomer, saveDealer, reload, exportBackup],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

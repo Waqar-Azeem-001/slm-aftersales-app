@@ -9,7 +9,7 @@ import { download } from '@/lib/reports/download';
 import { Card, Field, PageTitle, btnPrimary, btnSecondary, inputCls } from '@/components/ui';
 
 export default function ReportsPage() {
-  const { claims, dealers, exportBackup, resetToSeed } = useStore();
+  const { claims, dealers, exportBackup, reload } = useStore();
   const confirmed = claims.filter((c) => c.status === 'confirmed');
   const months = useMemo(() => Array.from(new Set(confirmed.map((c) => monthKey(c.happenedDate)))).filter((m) => m !== 'unknown').sort().reverse(), [confirmed]);
   const [sMonth, setSMonth] = useState(months[0] ?? '');
@@ -82,13 +82,13 @@ export default function ReportsPage() {
 
         <Card className="flex flex-col gap-3 p-5">
           <h2 className="text-lg font-bold">Backup</h2>
-          <p className="text-sm text-zinc-500">Database connect hone tak data isi browser mein hai. Hafte mein aik dafa backup download kar lein.</p>
+          <p className="text-sm text-zinc-500">Data MySQL database mein save hota hai. Photos abhi isi browser mein hain, is liye hafte mein aik dafa backup download kar lein.</p>
           <div className="flex flex-wrap gap-2">
             <button type="button" className={btnSecondary} onClick={() => download(new Blob([exportBackup()], { type: 'application/json' }), `SLM backup ${new Date().toISOString().slice(0, 10)}.json`)}>Backup download (JSON)</button>
             <button type="button" className={btnSecondary} onClick={async () => {
               await downloadClaimFile([...confirmed].sort((a, b) => (a.sNo ?? 0) - (b.sNo ?? 0)), `All Claims ${new Date().toISOString().slice(0, 10)}.xlsx`, 'All claims');
             }}>Saare claims (Excel)</button>
-            <button type="button" className="h-11 px-2 text-sm font-semibold text-red-700 underline" onClick={() => { if (window.confirm('Saari tabdeeliyan mita kar asal seed data wapas laana hai?')) resetToSeed(); }}>Seed data reset</button>
+            <button type="button" className={btnSecondary} onClick={() => { void reload(); }}>Database se dobara load</button>
           </div>
         </Card>
 
